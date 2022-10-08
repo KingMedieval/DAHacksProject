@@ -19,7 +19,15 @@
     align-items: center;
     margin-right: 20px;
 }
-
+.logo-title {
+    position: absolute;
+    top:20px;
+    left:100px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size:140%;
+}
 .header-logo {
     color: inherit;
     text-decoration: inherit;
@@ -42,7 +50,7 @@
 }
 
 .logo {
-    width: 50%;
+    width: 10%;
     z-index:2;
     margin-left:50px;
     margin-bottom:10px;

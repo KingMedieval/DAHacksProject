@@ -9,7 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 1075px;
+    margin-left: 1065px;
     color: black;
     text-decoration: inherit;
     text-transform: uppercase;
@@ -30,7 +30,7 @@
     text-decoration: inherit;
     text-transform: uppercase;
     outline: none;
-    background-color: blue;
+    background-color: #449aff;
     padding: 10px;
     width: 80px;
     height:10px;

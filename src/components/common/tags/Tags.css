@@ -1,13 +1,32 @@
 .tag-box{
     background-color:white;
     height:600px;
-    width:500px;
+    width:450px;
     position:absolute;
     left:1000px;
     top:400px;
     border:1px solid black;
+    border-radius:8px;
+    box-shadow:5px 5px rgba(0,0,0,0.25);
 }
 
-ul {
-    list-style:none;
+.tag-title {
+    margin-left:50px;
+    margin-top:35px;
+
+}
+.li-tags {
+    list-style: none;
+    font-size:130%;
+    margin-top:20px;
+    margin-left:10px;
+}
+
+.li-tags label{
+    margin-left:20px;
+}
+
+input.tag-check-box {
+    width:18px;
+    height:18px;
 }

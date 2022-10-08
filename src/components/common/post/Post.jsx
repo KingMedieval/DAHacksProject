@@ -6,7 +6,7 @@ function Post() {
     return (
         <section className = "post-outer">
             <section className = "post-text">
-                <p>Have a project idea but missing a group? Post your own entry here!</p>
+                <p>Have a neat project idea but missing group partners? Post your own entry here!</p>
             </section>
             <section className = "post-bottom">
                 <button className="post-button" >CREATE A POST</button>
