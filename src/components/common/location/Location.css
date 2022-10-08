@@ -1,0 +1,21 @@
+.location-box {
+    position:absolute;
+    top:200px;
+    left:400px;
+}
+
+.location-box li {
+    list-style:none;
+    display:inline;
+    margin-left:60px;
+    font-size:130%;
+}
+.location-box li label{
+    margin-left:15px;
+}
+
+
+.location-checkbox {
+    width:18px;
+    height: 18px;
+}
