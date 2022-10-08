@@ -1,96 +1,76 @@
-import { useState } from 'react';
-
-export default function Signup() {
-
-// States for registration
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-// States for checking the errors
-    const [submitted, setSubmitted] = useState(false);
-    const [error, setError] = useState(false);
-
-// Handling the name change
-    const handleName = (e) => {
-        setName(e.target.value);
-        setSubmitted(false);
-    };
-
-// Handling the email change
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-        setSubmitted(false);
-    };
-
-// Handling the password change
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-        setSubmitted(false);
-    };
-
-// Handling the form submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (name === '' || email === '' || password === '') { //it only allows to submit if all of them are filled
-            setError(true);
-        } else {
-            setSubmitted(true);
-            setError(false);
+import React, { Component } from 'react';
+export default class Signup extends Component {
+    userData;
+    constructor(props) {
+        super(props);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangePhone = this.onChangePhone.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.state = {
+            name: '',
+            email: '',
+            phone: ''
         }
-    };
+    }
+    // Form Events
+    onChangeName(e) {
+        this.setState({ name: e.target.value })
+    }
+    onChangeEmail(e) {
+        this.setState({ email: e.target.value })
+    }
+    onChangePhone(e) {
+        this.setState({ phone: e.target.value })
+    }
+    onSubmit(e) {
+        e.preventDefault()
+        this.setState({
+            name: '',
+            email: '',
+            phone: ''
+        })
+    }
+    // React Life Cycle
+    componentDidMount() {
+        this.userData = JSON.parse(localStorage.getItem('user'));
+        if (localStorage.getItem('user')) {
+            this.setState({
+                name: this.userData.name,
+                email: this.userData.email,
+                phone: this.userData.phone
+            })
+        } else {
+            this.setState({
+                name: '',
+                email: '',
+                phone: ''
+            })
+        }
+    }
+    componentWillUpdate(nextProps, nextState) {
+        localStorage.setItem('user', JSON.stringify(nextState));
+    }
 
-
-
-// Showing success message
-    const successMessage = () => {
+    render() {
         return (
-            <div className="success" style={{display: submitted ? '' : 'none',}}>
-                <h1>User {name} successfully registered!!</h1>
+            <div className="container">
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                        <label>Name</label>
+                        <input type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} />
+                    </div>
+                    <div className="form-group">
+                        <label>Email</label>
+                        <input type="email" className="form-control" value={this.state.email} onChange={this.onChangeEmail} />
+                    </div>
+                    <div className="form-group">
+                        <label>Phone</label>
+                        <input type="tel" className="form-control" value={this.state.phone} onChange={this.onChangePhone} />
+                    </div>
+                    <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                </form>
             </div>
-        );
-    };
-
-// Showing error message if error is true
-    const errorMessage = () => {
-        return (
-            <div className="error" style={{display: error ? '' : 'none',}}>
-                <h1>Please enter all the fields</h1>
-            </div>
-        );
-    };
-
-    return (
-        <div className="form">
-            <div>
-                <h1>User Registration</h1>
-            </div>
-
-            {/* Calling to the methods */}
-            <div className="messages">
-                {errorMessage()}
-                {successMessage()}
-            </div>
-
-            <form>
-                {/* Labels and inputs for form data */}
-                <label className="label">Name</label>
-                <input onChange={handleName} className="input"
-                       value={name} type="text" />
-
-                <label className="label">Email</label>
-                <input onChange={handleEmail} className="input"
-                       value={email} type="email" />
-
-                <label className="label">Password</label>
-                <input onChange={handlePassword} className="input"
-                       value={password} type="password" />
-
-                <button onClick={handleSubmit} className="btn" type="submit">
-                    Submit
-                </button>
-            </form>
-        </div>
-    );
-
+        )
+    }
 }
