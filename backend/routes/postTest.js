@@ -1,15 +1,16 @@
 var express = require("express");
 var router = express.Router();
 const { MONGO_URI } = require("../config.json");
-const bcrypt = require('bcrypt');
 const { MongoClient } = require('mongodb');
+const bcrypt = require('bcrypt');
 
+//initialize mongoclient
 const client = new MongoClient(MONGO_URI);
 const dbName = client.db('credTest');
 const userCreds = dbName.collection('UserCreds');
 
 router.post("/", async function(req, res, next) {
-    client.connect();
+    await client.connect();
 
     postBody = req.body;
 

@@ -6,7 +6,7 @@ import './Header.css';
 function Header() {
     return (
         <section className="header">
-            <a href="./" className="logo-title">MOMENTUM</a>
+            <a href="/" className="logo-title">MOMENTUM</a>
             <a className="box"></a>
             <section className="header-top">
                 <section className="header-top_logo">

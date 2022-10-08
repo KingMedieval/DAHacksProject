@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Signup.css'
 export default class Signup extends Component {
     userData;
     constructor(props) {
@@ -15,7 +16,6 @@ export default class Signup extends Component {
 
         };
     }
-
 
     callAPI() {
         fetch("http://localhost:6900/testAPI")
@@ -58,6 +58,15 @@ export default class Signup extends Component {
         })
             .then(res => res.json())
             .then(data => console.log(data));
+
+        fetch(`http://localhost:6900/userExists?id=${this.state.userID}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(res => res.json())
+            .then(data => console.log(data)); //const variableName = data.userID
     }
     // React Life Cycle
     componentDidMount() {
@@ -83,22 +92,25 @@ export default class Signup extends Component {
     render() {
         return (
             <div className="container">
+                <h1 className ="sign-up-title">Create a new account</h1>
+                <hr>
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Username</label>
+                    <div className="form-group" className="sign-up-label">
+                        <label className="sign-user">Username</label>
                         <input type="text" className="form-control" value={this.state.userID} onChange={this.onChangeUserID} />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" className="sign-up-email">
                         <label>Email</label>
                         <input type="email" className="form-control" value={this.state.email} onChange={this.onChangeEmail} />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" className="sign-up-pass">
                         <label>Password</label>
                         <input type="password" className="form-control" value={this.state.password} onChange={this.onChangePassword} />
                     </div>
                     <button type="submit" className="btn btn-primary btn-block"> Submit</button>
                 </form>
                 <p className="App-intro">{this.state.apiResponse}</p>
+                </hr>
             </div>
         )
     }

@@ -7,7 +7,10 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var testAPIRouter = require("./routes/testAPI");
-var postTest = require("./routes/postTest");
+var postTestRouter = require("./routes/postTest");
+var userExistsRouter = require("./routes/userExists");
+var newPostRouter = require("./routes/newPost");
+var getPostInfoRouter = require("./routes/getPostInfo")
 var cors = require("cors");
 global.bodyParser = require('body-parser');
 
@@ -40,7 +43,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/testAPI", testAPIRouter);
-app.use("/postTest", postTest);
+app.use("/postTest", postTestRouter);
+app.use("/userExists/", userExistsRouter);
+app.use("/newPost", newPostRouter);
+app.use("/getPostInfo", getPostInfoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Signup from "./components/common/Signup";
 import Login from "./components/common/Login";
+import Home from "./components/common/Home";
 import {Header} from "./components/common";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
@@ -18,6 +19,7 @@ root.render(
                 <Route path='/' element={<App />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/home' element={<Home />} />
             </Routes>
         </div>
     </BrowserRouter>
