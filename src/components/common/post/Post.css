@@ -7,8 +7,17 @@
     left:1000px;
     top:150px;
     border: 1px solid black;
+    border-radius:5px;
 }
 
+.modal-dec {
+    background-color:rgba(0,0,0,0.2);
+    position: absolute;
+    left:500px;
+    top:100px;
+    width:800px;
+    height:300px;
+}
 .post-text {
     text-align: center;
     margin: 40px 30px 0px 30px;
@@ -27,4 +36,26 @@
     color:white;
     border:transparent;
     padding:15px;
+    width:150px;
+    border-radius:20px;
+}
+
+.post-button:hover {
+    animation: identifier 1s infinite;
+}
+
+@keyframes identifier {
+    0% {
+        background-color:#449aff;
+        width:150px;
+    }
+    72% {
+        background-color: #587cc2;
+        width:170px;
+    }
+    100% {
+        background-color: #587cc2;
+        width:170px;
+
+    }
 }

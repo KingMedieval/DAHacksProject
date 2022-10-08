@@ -5,6 +5,7 @@ import Post from './post'
 import Tags from './tags'
 import Location from './location'
 import Submit from './submit'
+import Posting from './posting'
 
 export {
     Header,
@@ -13,5 +14,6 @@ export {
     Post,
     Tags,
     Location,
-    Submit
+    Submit,
+    Posting
 }
