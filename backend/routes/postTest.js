@@ -8,13 +8,24 @@ const client = new MongoClient(MONGO_URI);
 const dbName = client.db('credTest');
 const userCreds = dbName.collection('UserCreds');
 
-router.post("/", function(req, res, next) {
+router.post("/", async function(req, res, next) {
     client.connect();
-    console.log(req.body);
-    userCreds.insertOne(req.body, (err, data) => {
-        if(err) return console.log(err);
-        res.send('"SUCESS"');
-    })
+
+    postBody = req.body;
+
+    const saltRounds = 10; //higher number of rounds, stronger the hash
+
+    //generates salt with the cost being saltRounds, outputs to variable name salt
+    await bcrypt.genSalt(saltRounds, function(saltError, salt) {
+        //generates the hash from the salt generated above
+        bcrypt.hash(postBody.password, salt, function(hashError, hash){
+            console.log(hash);
+            console.log(postBody);
+            userCreds.insertOne({...postBody, hashedPass: hash}, (err, data) => {
+                if(err) return console.log(err);
+            })
+        });
+    });
 });
 
 module.exports = router;
