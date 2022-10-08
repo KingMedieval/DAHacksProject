@@ -1,6 +1,6 @@
 *.iml
 /.idea
-/src/config.json
+/backend/config.json
 
 # dependencies
 /node_modules

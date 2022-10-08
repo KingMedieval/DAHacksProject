@@ -3,48 +3,76 @@ export default class Signup extends Component {
     userData;
     constructor(props) {
         super(props);
-        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeUserID = this.onChangeUserID.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangePhone = this.onChangePhone.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.state = { apiResponse: "" };
         this.state = {
-            name: '',
+            userID: '',
             email: '',
-            phone: ''
-        }
+            password: '',
+
+        };
     }
+
+
+    callAPI() {
+        fetch("http://localhost:6900/testAPI")
+            .then(res => res.text())
+            .then(res => this.setState({ apiResponse: res }));
+    }
+
+    componentWillMount() {
+        this.callAPI();
+    }
+
     // Form Events
-    onChangeName(e) {
-        this.setState({ name: e.target.value })
+    onChangeUserID(e) {
+        this.setState({ userID: e.target.value })
     }
     onChangeEmail(e) {
         this.setState({ email: e.target.value })
     }
-    onChangePhone(e) {
-        this.setState({ phone: e.target.value })
+    onChangePassword(e) {
+        this.setState({ password: e.target.value })
     }
     onSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         this.setState({
-            name: '',
+            userID: '',
             email: '',
-            phone: ''
+            password: ''
+        });
+        let databody = {
+            "userID": this.state.userID,
+            "email": this.state.email,
+            "password": this.state.password
+        }
+        fetch('http://localhost:6900/postTest', {
+            method: 'POST',
+            body: JSON.stringify(databody),
+            headers: {
+                'Content-Type': 'application/json'
+            },
         })
+            .then(res => res.json())
+            .then(data => console.log(data));
     }
     // React Life Cycle
     componentDidMount() {
         this.userData = JSON.parse(localStorage.getItem('user'));
         if (localStorage.getItem('user')) {
             this.setState({
-                name: this.userData.name,
+                userID: this.userData.userID,
                 email: this.userData.email,
-                phone: this.userData.phone
+                password: this.userData.password
             })
         } else {
             this.setState({
-                name: '',
+                userID: '',
                 email: '',
-                phone: ''
+                password: ''
             })
         }
     }
@@ -57,19 +85,20 @@ export default class Signup extends Component {
             <div className="container">
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Name</label>
-                        <input type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} />
+                        <label>Username</label>
+                        <input type="text" className="form-control" value={this.state.userID} onChange={this.onChangeUserID} />
                     </div>
                     <div className="form-group">
                         <label>Email</label>
                         <input type="email" className="form-control" value={this.state.email} onChange={this.onChangeEmail} />
                     </div>
                     <div className="form-group">
-                        <label>Phone</label>
-                        <input type="tel" className="form-control" value={this.state.phone} onChange={this.onChangePhone} />
+                        <label>Password</label>
+                        <input type="password" className="form-control" value={this.state.password} onChange={this.onChangePassword} />
                     </div>
-                    <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                    <button type="submit" className="btn btn-primary btn-block"> Submit</button>
                 </form>
+                <p className="App-intro">{this.state.apiResponse}</p>
             </div>
         )
     }
