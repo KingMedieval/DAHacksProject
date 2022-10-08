@@ -1,0 +1,16 @@
+.search {
+    color: black;
+    background-color: rgb(244,244,244);
+    width:800px;
+    height:35px;
+    position:absolute;
+    top:150px;
+    left: 50px;
+    font-size:120%;
+    text-indent: 20px;
+    z-index:5;
+    border: 0.5px solid black;
+}
+input.search:focus {
+    outline-width: 0;
+}

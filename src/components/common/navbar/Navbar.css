@@ -1,0 +1,44 @@
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    float:right;
+}
+
+.navbar-item-log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1075px;
+    color: black;
+    text-decoration: inherit;
+    text-transform: uppercase;
+    outline: none;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid black;
+    width: 80px;
+    height:20px;
+}
+
+.navbar-item-sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:25px;
+    color: white;
+    text-decoration: inherit;
+    text-transform: uppercase;
+    outline: none;
+    background-color: blue;
+    padding: 10px;
+    width: 80px;
+    height:20px;
+}
+.header-top__navigation {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 55px;
+}
