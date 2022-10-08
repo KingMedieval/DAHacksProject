@@ -21,11 +21,11 @@
 }
 .logo-title {
     position: absolute;
-    top:20px;
-    left:100px;
+    top:18px;
+    left:110px;
     text-decoration: none;
     color: black;
-    font-weight: bold;
+    font-style: sans serif;
     font-size:140%;
 }
 .header-logo {
@@ -50,10 +50,11 @@
 }
 
 .logo {
-    width: 10%;
-    z-index:2;
-    margin-left:50px;
-    margin-bottom:10px;
+    position:absolute;
+    width:43px;
+    height:43px;
+    left:50px;
+    top:10px;
 }
 
 .box {
