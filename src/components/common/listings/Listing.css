@@ -24,15 +24,18 @@
 }
 
 .join-bottom{
-    text-align:
-    position:
-
+    text-align: center;
+    position: relative;
 }
 
 .learn-button{
-
+    background-color: blue;
+    color:white;
+    border:transparent;
+    padding:15px;
 }
 
 .learn-bottom{
-
+    text-align:center;
+    position:relative;
 }
