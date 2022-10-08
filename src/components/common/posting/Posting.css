@@ -1,0 +1,119 @@
+/*
+<section className="listing-box">
+            <section>
+                <p className="listing-title">Name</p>
+                <p className="listing-desc">Short brief description describing the contents of your project.</p>
+                <p className="numMembers">1/4 members</p>
+            </section>
+        </section>
+ */
+
+.post-flex {
+    display:flex;
+    flex-direction: column;
+}
+
+.listing-box {
+    background-color:white;
+    box-shadow: 5px 5px rgba(0,0,0,0.25);
+    width:800px;
+    height:200px;
+    position:absolute;
+    left:50px;
+    top:280px;
+    border: 1px solid black;
+}
+
+.listing-info {
+    margin-left:30px;
+    margin-top:20px;
+}
+
+.listing-title {
+    font-size:120%;
+    font-strength:bold;
+}
+
+.listing-desc {
+    width:400px;
+    margin-top:-10px;
+}
+
+.numMembers {
+    font-strength:bold;
+    margin-top:25px;
+}
+
+.listing-image {
+    width:55px;
+    height:55px;
+    position: absolute;
+    left:700px;
+    top:25px;
+}
+
+.listing-conjoined {
+    position:absolute;
+    left:600px;
+    top:28px;
+    margin:0;
+    padding:0;
+    line-height:10px;
+}
+
+.listing-buttons {
+    position: absolute;
+    left:530px;
+    top:145px;
+}
+
+.listing-join{
+    margin-right:20px;
+    background-color:#449aff;
+    border: transparent;
+    padding:10px;
+    width:70px;
+    height:40px;
+    color: white;
+    border-radius:2px;
+}
+
+.listing-learn{
+    background-color:#587cc2;
+    border: transparent;
+    padding:10px;
+    width:140px;
+    height: 40px;
+    color: white;
+    border-radius:2px;
+}
+
+.listing-tags {
+    display: inline;
+    color: white;
+    position: absolute;
+    left: 170px;
+    top:145px;
+}
+
+.listing-tag1 {
+    background-color:#66ac53;
+    margin-right:20px;
+    padding:7px;
+    border-radius:15px;
+    font-size:80%;
+    padding-left:15px;
+    padding-right:15px;
+    text-decoration:none;
+    color:white;
+}
+.listing-tag2 {
+    background-color:#66ac53;
+    padding:7px;
+    border-radius:15px;
+    font-size:80%;
+    padding-left:15px;
+    padding-right:15px;
+    text-decoration:none;
+    color:white;
+}
