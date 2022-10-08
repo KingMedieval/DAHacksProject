@@ -8,8 +8,8 @@ function Post() {
             <section className = "post-text">
                 <p>Have a project idea but missing a group? Post your own entry here!</p>
             </section>
-            <section className = "post-button">
-                <button>CREATE A POST</button>
+            <section className = "post-bottom">
+                <button className="post-button" >CREATE A POST</button>
             </section>
         </section>
     )

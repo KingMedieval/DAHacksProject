@@ -18,7 +18,7 @@
     padding: 10px;
     border: 1px solid black;
     width: 80px;
-    height:20px;
+    height:10px;
 }
 
 .navbar-item-sign {
@@ -33,7 +33,7 @@
     background-color: blue;
     padding: 10px;
     width: 80px;
-    height:20px;
+    height:10px;
 }
 .header-top__navigation {
     display: flex;

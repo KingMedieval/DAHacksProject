@@ -10,7 +10,7 @@ function Header() {
             <section className="header-top">
                 <section className="header-top_logo">
                     <a href="/" className = "header-logo">
-                        <img src="https://cdn.discordapp.com/attachments/1027411637591875624/1028152556712624188/desmos.png" className="logo"></img>
+                        <img src="https://cdn.discordapp.com/attachments/1027411637591875624/1028237764900163654/desmos.png" className="logo"></img>
                     </a>
                 </section>
                 <section className="header-top_navbar">
