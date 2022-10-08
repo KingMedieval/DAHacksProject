@@ -1,0 +1,13 @@
+.tag-box{
+    background-color:white;
+    height:600px;
+    width:500px;
+    position:absolute;
+    left:1000px;
+    top:400px;
+    border:1px solid black;
+}
+
+ul {
+    list-style:none;
+}
