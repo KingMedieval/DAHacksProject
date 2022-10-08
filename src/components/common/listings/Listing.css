@@ -1,0 +1,38 @@
+.listing.outer{
+    background-color:white;
+    box-shadow:6px 6px rgb(0, 0, 0, 0.25);
+    width:620px;
+    height:400px;
+    position:absolute;
+    left:1000px;
+    top:150px;
+    border:1px solid black;
+}
+
+.listing-text{
+    text-align:left;
+    margin:
+    position:relative;
+    font-size:120%;
+}
+
+.join-button{
+    background-color:gray;
+    color:white;
+    border:transparent;
+    padding:15px;
+}
+
+.join-bottom{
+    text-align:
+    position:
+
+}
+
+.learn-button{
+
+}
+
+.learn-bottom{
+
+}
