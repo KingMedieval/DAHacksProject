@@ -1,117 +1,103 @@
-import React, { Component } from 'react';
-import './Signup.css'
-export default class Signup extends Component {
-    userData;
-    constructor(props) {
-        super(props);
-        this.onChangeUserID = this.onChangeUserID.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-        this.state = { apiResponse: "" };
-        this.state = {
-            userID: '',
-            email: '',
-            password: '',
+import React, {Component, useState} from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
-        };
-    }
+import InputGroup from 'react-bootstrap/InputGroup';
 
-    callAPI() {
-        fetch("http://localhost:6900/testAPI")
-            .then(res => res.text())
-            .then(res => this.setState({ apiResponse: res }));
-    }
+import 'bootstrap/dist/css/bootstrap.min.css';
+import'./Signup.css'
+function Signup() {
 
-    componentWillMount() {
-        this.callAPI();
-    }
+    const [validated, setValidated] = useState(false);
 
-    // Form Events
-    onChangeUserID(e) {
-        this.setState({ userID: e.target.value })
-    }
-    onChangeEmail(e) {
-        this.setState({ email: e.target.value })
-    }
-    onChangePassword(e) {
-        this.setState({ password: e.target.value })
-    }
-    onSubmit(e) {
-        e.preventDefault();
-        this.setState({
-            userID: '',
-            email: '',
-            password: ''
-        });
-        let databody = {
-            "userID": this.state.userID,
-            "email": this.state.email,
-            "password": this.state.password
+    const [userName, setUserName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+
+        if (form.checkValidity() === false) { //checks are not met
+            event.preventDefault();
+            event.stopPropagation();
         }
-        fetch('http://localhost:6900/postTest', {
-            method: 'POST',
-            body: JSON.stringify(databody),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(res => res.json())
-            .then(data => console.log(data));
+        else {
+            //event.preventDefault();
+            let databody = {
+                "userID": userName,
+                "email": email,
+                "password": password,
+            }
 
-        fetch(`http://localhost:6900/userExists?id=${this.state.userID}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(res => res.json())
-            .then(data => console.log(data)); //const variableName = data.userID
-    }
-    // React Life Cycle
-    componentDidMount() {
-        this.userData = JSON.parse(localStorage.getItem('user'));
-        if (localStorage.getItem('user')) {
-            this.setState({
-                userID: this.userData.userID,
-                email: this.userData.email,
-                password: this.userData.password
+
+            fetch('http://localhost:6900/postTest', {
+                method: 'POST',
+                body: JSON.stringify(databody),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
             })
-        } else {
-            this.setState({
-                userID: '',
-                email: '',
-                password: ''
-            })
+                .then(res => res.json());
         }
-    }
-    componentWillUpdate(nextProps, nextState) {
-        localStorage.setItem('user', JSON.stringify(nextState));
-    }
+        setValidated(true);
+    };
 
-    render() {
-        return (
-            <div className="container">
-                <h1 className ="sign-up-title">Create a new account</h1>
-                <hr>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group" className="sign-up-label">
-                        <label className="sign-user">Username</label>
-                        <input type="text" className="form-control" value={this.state.userID} onChange={this.onChangeUserID} />
-                    </div>
-                    <div className="form-group" className="sign-up-email">
-                        <label>Email</label>
-                        <input type="email" className="form-control" value={this.state.email} onChange={this.onChangeEmail} />
-                    </div>
-                    <div className="form-group" className="sign-up-pass">
-                        <label>Password</label>
-                        <input type="password" className="form-control" value={this.state.password} onChange={this.onChangePassword} />
-                    </div>
-                    <button type="submit" className="btn btn-primary btn-block"> Submit</button>
-                </form>
-                <p className="App-intro">{this.state.apiResponse}</p>
-                </hr>
-            </div>
-        )
-    }
-}
+    return (
+        <>
+            <h>
+                <section className="sign-up-outer">
+                    <h1 className="sign-title">Create a new account</h1>
+                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3" controlId="validationProjName">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control
+                                required
+                                type="text"
+                                placeholder="Username"
+                                value={userName}
+                                onChange={(e)=>setUserName(e.target.value)}
+                                className="input-line"/>
+                            <Form.Control.Feedback type="invalid">Please enter username.</Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group
+                            className="mb-3"
+                            controlId="validationEmail"
+                        >
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control
+                                required
+                                type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e)=>setEmail(e.target.value)}
+                                className="input-line"/>
+                            <Form.Control.Feedback type="invalid">Enter your email</Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group
+                            className="mb-3"
+                            controlId="validationPass"
+                        >
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                required
+                                type="password"
+                                placeholder="password"
+                                value={password}
+                                onChange={(e)=>setPassword(e.target.value)}
+                                className="input-line"/>
+                            <Form.Control.Feedback type="invalid">Enter Password</Form.Control.Feedback>
+                        </Form.Group>
+                        <Button className= "submit-button" type="submit">
+                            Sign up
+                        </Button>
+                    </Form>
+                </section>
+            </h>
+        </>
+
+    );
+};
+export default Signup;

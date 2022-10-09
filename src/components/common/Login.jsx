@@ -1,93 +1,87 @@
-import React, { Component } from 'react';
+import React, {Component, useState} from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
-export default class Login extends Component {
-    userData;
-    constructor(props) {
-        super(props);
-        this.onChangeUserID = this.onChangeUserID.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-        this.state = { apiResponse: "" };
-        this.state = {
-            userID: '',
-            password: '',
+import InputGroup from 'react-bootstrap/InputGroup';
 
-        };
-    }
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Login.css'
+
+function Login() {
+
+    const [validated, setValidated] = useState(false);
+
+    const [userName, setUserName] = useState('');
+    const [password, setPassword] = useState('');
 
 
-    callAPI() {
-        fetch("http://localhost:6900/testAPI")
-            .then(res => res.text())
-            .then(res => this.setState({ apiResponse: res }));
-    }
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
 
-    componentWillMount() {
-        this.callAPI();
-    }
-
-    // Form Events
-    onChangeUserID(e) {
-        this.setState({ userID: e.target.value })
-    }
-    onChangePassword(e) {
-        this.setState({ password: e.target.value })
-    }
-    onSubmit(e) {
-        e.preventDefault();
-        this.setState({
-            userID: '',
-            password: ''
-        });
-        let databody = {
-            "userID": this.state.userID,
-            "password": this.state.password
+        if (form.checkValidity() === false) { //checks are not met
+            event.preventDefault();
+            event.stopPropagation();
         }
-        fetch('http://localhost:6900/postTest', {
-            method: 'POST',
-            body: JSON.stringify(databody),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(res => res.json())
-            .then(data => console.log(data));
-    }
-    // React Life Cycle
-    componentDidMount() {
-        this.userData = JSON.parse(localStorage.getItem('user'));
-        if (localStorage.getItem('user')) {
-            this.setState({
-                userID: this.userData.userID,
-                password: this.userData.password
+        else{
+            let result;
+            let databody = {
+                "userID": userName,
+                "password": password,
+            }
+            fetch(`http://localhost:6900/login?userID=${userName}?userInputPass=${password}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
             })
-        } else {
-            this.setState({
-                userID: '',
-                password: ''
-            })
+                .then(res => {
+                    result = res.json();
+                });
         }
-    }
-    componentWillUpdate(nextProps, nextState) {
-        localStorage.setItem('user', JSON.stringify(nextState));
-    }
+        setValidated(true);
+        }
 
-    render() {
-        return (
-            <div className="container">
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Username</label>
-                        <input type="text" className="form-control" value={this.state.userID} onChange={this.onChangeUserID} />
-                    </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input type="password" className="form-control" value={this.state.password} onChange={this.onChangePassword} />
-                    </div>
-                    <button type="submit" className="btn btn-primary btn-block"> Submit</button>
-                </form>
-                <p className="App-intro">{this.state.apiResponse}</p>
-            </div>
-        )
-    }
-}
+
+    return (
+        <>
+            <h>
+                <section className="sign-up-outer">
+                    <h1 className="sign-title">Login With your Account</h1>
+                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3" controlId="validationProjName">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control
+                                required
+                                type="text"
+                                placeholder="Username"
+                                value={userName}
+                                onChange={(e)=>setUserName(e.target.value)}
+                                className="input-line"/>
+                            <Form.Control.Feedback type="invalid">Please enter username.</Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group
+                            className="mb-3"
+                            controlId="validationPass"
+                        >
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                required
+                                type="password"
+                                placeholder="password"
+                                value={password}
+                                onChange={(e)=>setPassword(e.target.value)}
+                                className="input-line"/>
+                            <Form.Control.Feedback type="invalid">Enter Password</Form.Control.Feedback>
+                        </Form.Group>
+                        <Button className= "submit-button" type="submit">
+                            Sign up
+                        </Button>
+                    </Form>
+                </section>
+            </h>
+        </>
+    )
+};
+
+export default Login;
