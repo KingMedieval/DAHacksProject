@@ -24,15 +24,16 @@
     top:18px;
     left:102px;
     text-decoration: none;
-    color: rgba(0,0,0,0.75);
+    color: rgba(0,0 ,0,0.75);
     font-style: sans serif;
     font-size:140%;
+    z-index:5;
 }
 .header-logo {
     color: inherit;
-    text-decoration: inherit;
     font-family: RobotoThin;
     font-size: 50px;
+    z-index:6;
 }
 
 .header-top__navbar {

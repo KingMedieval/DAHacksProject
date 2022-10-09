@@ -18,9 +18,6 @@
     box-shadow: 5px 5px rgba(0,0,0,0.25);
     width:800px;
     height:200px;
-    position:absolute;
-    left:50px;
-    top:280px;
     border: 1px solid black;
 }
 
@@ -37,6 +34,7 @@
 .listing-desc {
     width:400px;
     margin-top:-10px;
+    color:rgb(0,0,0,0.8);
 }
 
 .numMembers {
@@ -47,24 +45,20 @@
 .listing-image {
     width:55px;
     height:55px;
-    position: absolute;
-    left:700px;
-    top:25px;
+    margin-left:700px;
+    margin-top:-310px;
 }
 
 .listing-conjoined {
-    position:absolute;
-    left:600px;
-    top:28px;
-    margin:0;
-    padding:0;
+    margin-right:120px;
     line-height:10px;
+    margin-top:-185px;
+    text-align:right;
 }
 
 .listing-buttons {
-    position: absolute;
-    left:530px;
-    top:145px;
+    margin-left:530px;
+    margin-top:-65px;
 }
 
 .listing-join{
@@ -88,14 +82,6 @@
     border-radius:2px;
 }
 
-.listing-tags {
-    display: inline;
-    color: white;
-    position: absolute;
-    left: 170px;
-    top:145px;
-}
-
 .listing-tag1 {
     background-color:#66ac53;
     margin-right:20px;
@@ -104,7 +90,7 @@
     font-size:80%;
     padding-left:15px;
     padding-right:15px;
-    text-decoration:none;
+    text-decoration:none;;
     color:white;
 }
 .listing-tag2 {
@@ -117,3 +103,5 @@
     text-decoration:none;
     color:white;
 }
+
+
