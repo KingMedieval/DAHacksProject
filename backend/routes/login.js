@@ -11,7 +11,7 @@ router.get("/", async function(req, res, next) {
     await client.connect;
     console.log("connected");
     const userID = req.query.userid;
-    const userInputPass = req.query.userid;
+    const userInputPass = req.query.userInputPass;
 
     let userInfo = await client.db('credTest').collection('UserCreds').findOne({"userID": userID});
     let hash = userInfo.hashedPass;
